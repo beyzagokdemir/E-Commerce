@@ -25,3 +25,7 @@
 .icon:hover {
   cursor: pointer;
 }
+
+#root {
+  height: 100vh;
+}

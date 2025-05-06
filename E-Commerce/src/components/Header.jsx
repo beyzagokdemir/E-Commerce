@@ -1,10 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import "../css/Header.css";
 import { CiShoppingBasket } from "react-icons/ci";
 import { CiLight } from "react-icons/ci";
 import { FaRegMoon } from "react-icons/fa";
 
 function Header() {
+  const [theme, setTheme] = useState(false);
+
+  const changeTheme = () => {
+    const root = document.getElementById("root");
+    if (theme) {
+      root.style.backgroundColor = "black";
+      root.style.color = "#fff";
+    } else {
+      root.style.backgroundColor = "#fff";
+      root.style.color = "black";
+    }
+
+    setTheme(!theme);
+  };
+
   return (
     <div
       style={{
@@ -26,8 +41,11 @@ function Header() {
           placeholder="Bir şeyler ara"
         />
         <div>
-          <CiLight className="icon" />
-          {/* <FaRegMoon className="icon" /> */}
+          {theme ? (
+            <FaRegMoon className="icon" onClick={changeTheme} />
+          ) : (
+            <CiLight className="icon" onClick={changeTheme} />
+          )}
           <CiShoppingBasket className="icon" />
         </div>
       </div>
