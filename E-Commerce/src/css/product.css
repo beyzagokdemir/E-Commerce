@@ -10,3 +10,22 @@
   border-radius: 10px;
   margin: 15px;
 }
+
+.card:hover {
+  box-shadow: 1px 4px 3px rgb(105, 104, 104);
+  transition: all 0.6;
+  cursor: pointer;
+}
+
+.detail-button {
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: antiquewhite;
+}
+
+.detail-button:hover {
+  cursor: pointer;
+  background-color: bisque;
+  transition: all 0.6;
+}

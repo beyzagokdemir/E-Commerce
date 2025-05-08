@@ -10,6 +10,9 @@ function Product({ product }) {
         <p style={{ textAlign: "center", height: "50px" }}>{title}</p>
         <h3 style={{ textAlign: "center" }}>{price}₺</h3>
       </div>
+      <div className="flex-row">
+        <button className="detail-button">Detayına git</button>
+      </div>
     </div>
   );
 }
