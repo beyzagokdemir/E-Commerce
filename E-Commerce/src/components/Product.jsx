@@ -1,8 +1,11 @@
 import React from "react";
 import "../css/product.css";
+import { navigate, useNavigate } from "react-router-dom";
 
 function Product({ product }) {
   const { id, image, price, title, description } = product;
+  const navigate = useNavigate();
+
   return (
     <div className="card">
       <img className="image" src={image} alt="" />
@@ -11,7 +14,12 @@ function Product({ product }) {
         <h3 style={{ textAlign: "center" }}>{price}₺</h3>
       </div>
       <div className="flex-row">
-        <button className="detail-button">Detayına git</button>
+        <button
+          onClick={() => navigate("/product-details/" + id)}
+          className="detail-button"
+        >
+          Detayına git
+        </button>
       </div>
     </div>
   );
