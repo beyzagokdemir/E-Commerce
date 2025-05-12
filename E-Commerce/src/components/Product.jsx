@@ -1,6 +1,6 @@
 import React from "react";
 import "../css/product.css";
-import { navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function Product({ product }) {
   const { id, image, price, title, description } = product;
