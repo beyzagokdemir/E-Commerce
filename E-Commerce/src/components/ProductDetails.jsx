@@ -1,7 +1,10 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { setSelectedProducts } from "../redux/slices/productSlice";
+import { CiCirclePlus } from "react-icons/ci";
+import { CiCircleMinus } from "react-icons/ci";
+import { addToBasket, calculateBasket } from "../redux/slices/basketSlice";
 
 function ProductDetails() {
   const { id } = useParams();
@@ -11,6 +14,15 @@ function ProductDetails() {
   const { products, selectedProduct } = useSelector((store) => store.product);
 
   const { image, price, title, description } = selectedProduct;
+
+  const [count, setCount] = useState(0);
+
+  const increment = () => {
+    setCount(count + 1);
+  };
+  const decrement = () => {
+    setCount(count - 1);
+  };
 
   useEffect(() => {
     getProductByID();
@@ -23,6 +35,20 @@ function ProductDetails() {
           dispatch(setSelectedProducts(product));
         }
       });
+  };
+
+  const addBasket = () => {
+    const payload = {
+      id,
+      price,
+      image,
+      title,
+      description,
+      count,
+    };
+
+    dispatch(addToBasket(payload));
+    dispatch(calculateBasket());
   };
 
   return (
@@ -50,6 +76,35 @@ function ProductDetails() {
         >
           {price}₺
         </h1>
+
+        <div style={{ display: "flex", alignItems: "center" }}>
+          <CiCirclePlus
+            onClick={increment}
+            style={{ fontSize: "40px", marginRight: "15px" }}
+          />
+          <span style={{ fontSize: "35px" }}>{count}</span>
+          <CiCircleMinus
+            onClick={decrement}
+            style={{ fontSize: "40px", marginLeft: "15px" }}
+          />
+        </div>
+
+        <div>
+          <button
+            onClick={addBasket}
+            style={{
+              marginTop: "25px",
+              border: "none",
+              padding: "10px",
+              backgroundColor: "rgb(185,76,76)",
+              color: "#fff",
+              borderRadius: "5px",
+              cursor: "pointer",
+            }}
+          >
+            Sepete Ekle
+          </button>
+        </div>
       </div>
     </div>
   );

@@ -3,9 +3,12 @@ import "../css/Header.css";
 import { CiShoppingBasket } from "react-icons/ci";
 import { CiLight } from "react-icons/ci";
 import { FaRegMoon } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 function Header() {
   const [theme, setTheme] = useState(false);
+
+  const navigate = useNavigate();
 
   const changeTheme = () => {
     const root = document.getElementById("root");
@@ -29,7 +32,7 @@ function Header() {
         justifyContent: "space-between",
       }}
     >
-      <div className="flex-row">
+      <div className="flex-row" onClick={() => navigate("/")}>
         <img className="logo" src="./src/imges/images.png" alt="" />
         <p className="logo-text">Ticaret A.Ş</p>
       </div>
